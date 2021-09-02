@@ -1,59 +1,25 @@
 <template>
-  <div>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Destination</th>
-        <th>Number of people going</th>
-        <th>Date of Going</th>
-        <th>status</th>
-      </tr>
-
-      <tr v-for="(cablistp, idx) in cablistp" :key="idx">
-        <td>{{ cablistp.name }}</td>
-        <td>{{ cablistp.dest }}</td>
-        <td>{{ cablistp.nump }}</td>
-        <td>{{ cablistp.date }}</td>
-        <td>
-          <button @click="done(idx)">Booking</button>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Destination</th>
-        <th>Number of people going</th>
-        <th>Date of Going</th>
-        <th>status</th>
-      </tr>
-      <div v-for="(cablistp, idx) in cablistp" :key="idx">
-        <tr v-if="cablistp.status">
-          <td>{{ cablistp.name }}</td>
-          <td>{{ cablistp.dest }}</td>
-          <td>{{ cablistp.nump }}</td>
-          <td>{{ cablistp.date }}</td>
-          <td>
-            <button @click="done(idx)">Booking</button>
-          </td>
-        </tr>
-      </div>
-    </table>
-  </div>
+  <div>This isAdmin Page
+      <PendingTable :requests="cablistp"></PendingTable>
+            <ApprovedTable :requests="cablistp"></ApprovedTable>
+    </div>
 </template>
 
 <script>
-export default {
+import PendingTable from '@/components/PendingTable.vue'
+import ApprovedTable from '@/components/ApprovedTable.vue'
+export default {  
   name: "Admin",
-  data() {
+  data  () {
     return {
-      cablistp: [
+     cablistp: [
         {
           name: "Nachiket Digha",
           dest: "Pune",
           nump: 3,
           date: "02-09-2021",
           status: false,
+          reqId:1,
         },
         {
           name: "Arjun Odedra",
@@ -61,6 +27,8 @@ export default {
           nump: 4,
           date: "04-09-2021",
           status: false,
+          reqId:2,
+
         },
         {
           name: "Surmdra Rajput",
@@ -68,6 +36,8 @@ export default {
           nump: 5,
           date: "02-10-2021",
           status: false,
+                    reqId:3,
+
         },
         {
           name: "Nachiket Digha",
@@ -75,6 +45,8 @@ export default {
           nump: 6,
           date: "03-08-2021",
           status: false,
+                    reqId:4,
+
         },
         {
           name: "Omkar Chorghe",
@@ -82,16 +54,17 @@ export default {
           nump: 1,
           date: "01-09-2021",
           status: false,
+                    reqId:5,
+
         },
       ],
-    };
+    }
   },
-  methods: {
-    done: function (par) {
-      this.cablistp[par].status = true;
-    },
-  },
-};
+  components:{
+    PendingTable,
+    ApprovedTable
+  }
+}
 </script>
 
 <style>
