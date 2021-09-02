@@ -9,7 +9,7 @@
         <th>status</th>
       </tr>
 
-      <tr v-for="(cablistp, idx) in cablistp" :key="idx">
+      <tr v-for="(cablistp, idx) in infone" :key="idx">
         <td>{{ cablistp.name }}</td>
         <td>{{ cablistp.dest }}</td>
         <td>{{ cablistp.nump }}</td>
@@ -27,17 +27,16 @@
         <th>Date of Going</th>
         <th>status</th>
       </tr>
-      <div v-for="(cablistp, idx) in cablistp" :key="idx">
-        <tr v-if="cablistp.status">
+      
+        <tr v-for="(cablistp) in inftwo " :key="cablistp.name" >
+      
           <td>{{ cablistp.name }}</td>
           <td>{{ cablistp.dest }}</td>
           <td>{{ cablistp.nump }}</td>
-          <td>{{ cablistp.date }}</td>
-          <td>
-            <button @click="done(idx)">Booking</button>
-          </td>
+          <td>{{ cablistp.date }}</td> 
+          <td> Aproved </td>        
         </tr>
-      </div>
+     
     </table>
   </div>
 </template>
@@ -91,6 +90,14 @@ export default {
       this.cablistp[par].status = true;
     },
   },
+  computed:{
+      infone :function(){
+         return this.cablistp.filter(i => i.status==false)
+      },
+      inftwo :function(){
+         return this.cablistp.filter(i => i.status==true)
+      }
+  }
 };
 </script>
 
